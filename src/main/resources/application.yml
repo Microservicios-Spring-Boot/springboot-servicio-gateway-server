@@ -4,13 +4,13 @@ spring:
       routes:
       - id: servicio-productos
         uri: lb://servicio-productos # Instancia del microservicio: Mediante balanceo de carga podamos acceder a este recurso
-        predicates: 
-          - Path=/api/productos/**
+        predicates: # lista de predicados que se aplicarán a las solicitudes entrantes para determinar si deben enrutarse a esta ruta 
+          - Path=/api/productos/** # indica que la solicitud debe tener una ruta que comience con "/api/productos/"
         filters: 
-          - StripPrefix=2
+          - StripPrefix=2 # Los dos primeros segmentos de la ruta /api y /items se eliminarán antes de enrutar la solicitud al servicio de productos
       - id: servicio-items
         uri: lb://servicio-items # Instancia del microservicio: Mediante balanceo de carga podamos acceder a este recurso
         predicates: 
           - Path=/api/items/**
         filters: 
-          - StripPrefix=2
+          - StripPrefix=2 # Los dos primeros segmentos de la ruta /api y /items se eliminarán antes de enrutar la solicitud al servicio de items
