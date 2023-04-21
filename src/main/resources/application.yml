@@ -3,15 +3,14 @@ spring:
     gateway:
       routes:
       - id: servicio-productos
-        uri: lb://servicio-productos
-        predicates:
+        uri: lb://servicio-productos # Instancia del microservicio: Mediante balanceo de carga podamos acceder a este recurso
+        predicates: 
           - Path=/api/productos/**
-        filters:
+        filters: 
           - StripPrefix=2
       - id: servicio-items
-        uri: lb://servicio-items
-        predicates:
+        uri: lb://servicio-items # Instancia del microservicio: Mediante balanceo de carga podamos acceder a este recurso
+        predicates: 
           - Path=/api/items/**
-        filters:
+        filters: 
           - StripPrefix=2
-      
